@@ -1,0 +1,393 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tulipanes para ti 🌷</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #f8dff0;
+}
+
+.escena {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #f8dff0;
+}
+
+/* IMAGEN PRINCIPAL */
+.fondo {
+    position: absolute;
+    z-index: 1;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    animation: movimientoCamara 10s ease-in-out infinite alternate;
+}
+
+/* LUZ */
+.luz {
+    position: absolute;
+    z-index: 2;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255,255,255,0.10),
+            transparent 45%
+        );
+
+    animation: luzSuave 5s ease-in-out infinite;
+}
+
+/* FRASE */
+.mensaje {
+    position: absolute;
+    z-index: 10;
+
+    top: 7%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(90%, 850px);
+
+    text-align: center;
+
+    color: #a51d62;
+
+    font-size: clamp(25px, 4vw, 48px);
+
+    line-height: 1.25;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 2px 4px rgba(255,255,255,0.95),
+        0 0 12px rgba(255,255,255,0.8);
+
+    animation: aparecer 2.5s ease-out forwards;
+}
+
+.mensaje .corazon {
+    display: block;
+
+    margin-top: 12px;
+
+    font-size: clamp(30px, 4vw, 45px);
+
+    animation: latido 1.6s ease-in-out infinite;
+}
+
+/* PÉTALOS */
+.petalo {
+    position: absolute;
+    z-index: 20;
+
+    top: -70px;
+
+    width: 18px;
+    height: 28px;
+
+    border-radius: 100% 0 100% 0;
+
+    background: linear-gradient(
+        135deg,
+        #ff9fc2,
+        #e83b76
+    );
+
+    opacity: 0.85;
+
+    pointer-events: none;
+
+    animation-name: caer;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.petalo:nth-child(1) {
+    left: 5%;
+    animation-duration: 8s;
+    animation-delay: -2s;
+}
+
+.petalo:nth-child(2) {
+    left: 15%;
+    animation-duration: 11s;
+    animation-delay: -6s;
+    transform: scale(0.7);
+}
+
+.petalo:nth-child(3) {
+    left: 27%;
+    animation-duration: 9s;
+    animation-delay: -3s;
+    transform: scale(1.1);
+}
+
+.petalo:nth-child(4) {
+    left: 40%;
+    animation-duration: 12s;
+    animation-delay: -8s;
+    transform: scale(0.6);
+}
+
+.petalo:nth-child(5) {
+    left: 53%;
+    animation-duration: 8s;
+    animation-delay: -4s;
+}
+
+.petalo:nth-child(6) {
+    left: 66%;
+    animation-duration: 10s;
+    animation-delay: -7s;
+    transform: scale(0.75);
+}
+
+.petalo:nth-child(7) {
+    left: 78%;
+    animation-duration: 9s;
+    animation-delay: -1s;
+    transform: scale(0.9);
+}
+
+.petalo:nth-child(8) {
+    left: 90%;
+    animation-duration: 13s;
+    animation-delay: -10s;
+    transform: scale(0.6);
+}
+
+/* DESTELLOS */
+.destello {
+    position: absolute;
+    z-index: 15;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 15px 5px rgba(255,255,255,0.9);
+
+    pointer-events: none;
+
+    animation: brillo 2.5s ease-in-out infinite;
+}
+
+.destello:nth-child(1) {
+    left: 12%;
+    top: 35%;
+}
+
+.destello:nth-child(2) {
+    left: 24%;
+    top: 65%;
+    animation-delay: 0.8s;
+}
+
+.destello:nth-child(3) {
+    left: 75%;
+    top: 28%;
+    animation-delay: 1.3s;
+}
+
+.destello:nth-child(4) {
+    left: 88%;
+    top: 58%;
+    animation-delay: 1.9s;
+}
+
+/* ANIMACIONES */
+
+@keyframes movimientoCamara {
+
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.045);
+    }
+}
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform:
+            translateX(-50%)
+            translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+@keyframes latido {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+@keyframes luzSuave {
+
+    0%, 100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes brillo {
+
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.4);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+}
+
+@keyframes caer {
+
+    0% {
+        top: -70px;
+        margin-left: 0;
+        transform: rotate(0deg);
+    }
+
+    25% {
+        margin-left: 35px;
+        transform: rotate(90deg);
+    }
+
+    50% {
+        margin-left: -25px;
+        transform: rotate(180deg);
+    }
+
+    75% {
+        margin-left: 30px;
+        transform: rotate(270deg);
+    }
+
+    100% {
+        top: 110vh;
+        margin-left: -20px;
+        transform: rotate(360deg);
+    }
+}
+
+/* CELULAR */
+@media (max-width: 600px) {
+
+    .mensaje {
+        top: 5%;
+        width: 92%;
+        font-size: 26px;
+    }
+
+    .mensaje .corazon {
+        font-size: 32px;
+    }
+
+    .fondo {
+        object-position: center center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="escena">
+
+    <!-- IMAGEN DE CINNAMOROLL + TULIPANES -->
+    <img
+        class="fondo"
+        src="./tulipanes_cinnamoroll.png"
+        alt="Cinnamoroll rodeando un ramo de tulipanes"
+    >
+
+    <!-- LUZ -->
+    <div class="luz"></div>
+
+    <!-- FRASE -->
+    <div class="mensaje">
+        Que estos tulipanes alegren tus días
+        como tú alegras los míos.
+
+        <span class="corazon">
+            🌷 💗 🌷
+        </span>
+    </div>
+
+    <!-- PÉTALOS -->
+    <span class="petalo"></span>
+    <span class="petalo"></span>
+    <span class="petalo"></span>
+    <span class="petalo"></span>
+    <span class="petalo"></span>
+    <span class="petalo"></span>
+    <span class="petalo"></span>
+    <span class="petalo"></span>
+
+    <!-- DESTELLOS -->
+    <span class="destello"></span>
+    <span class="destello"></span>
+    <span class="destello"></span>
+    <span class="destello"></span>
+
+</div>
+
+</body>
+</html>
+```
